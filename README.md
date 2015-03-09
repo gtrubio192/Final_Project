@@ -33,3 +33,6 @@ https://trello.com/b/lhzD9KzM/iy-final-project
 
 - Draggable and Resizable: jquery library that allows you to move elements around with your mouse http://jqueryui.com/draggable/ http://jqueryui.com/resizable/
 
+- ORRRR
+- DOPE!Check out in full detail:  http://webix.com
+- Top 5 JS UI Libraries: http://www.sitepoint.com/top-5-jquery-ui-alternatives/
