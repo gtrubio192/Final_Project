@@ -29,5 +29,7 @@ https://trello.com/b/lhzD9KzM/iy-final-project
 ## Models
 
 ## API’s, Plugins, Libraries, and Frameworks
+- Drop zone: Drag and drop images to upload with a preview http://www.dropzonejs.com/
 
+- Draggable and Resizable: jquery library that allows you to move elements around with your mouse http://jqueryui.com/draggable/ http://jqueryui.com/resizable/
 
