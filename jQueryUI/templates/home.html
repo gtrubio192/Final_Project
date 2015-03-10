@@ -8,14 +8,17 @@
         <button class="btn pull-right" ng-click="edit()">
             <i class="fa fa-pencil"></i>
         </button>
-        <textarea ng-show="textShow" type="text" ng-model="divContent" id="content">
-            
-<!--                    {{divContent}}-->
-        </textarea>
-        <div ng-show="!textShow" ng-repeat="items in divContent track by $index">
-            {{items}}
+        <div >
+            <textarea width='100px' height='100px' ng-show="textShow" type="text" ng-model="divContent[0].content" ng-repeat="item in divContent track by $index">
+                {{item.content}}
+    <!--                    {{divContent}}-->
+            </textarea>
+        </div>
+        <div ng-show="!textShow" ng-bind="divContent[0].content">
+<!--       <div ng-show="!textShow" ng-repeat="items in divContent track by $index">-->
+<!--            {{items.content}}-->
 <!--            {{divContent}}-->
         </div>
-        <button ng-show="saveButton" ng-click="hideEdit(divContent)">Save</button>
+        <button ng-show="saveButton" ng-click="hideEdit()">Save</button>
     </div>
 </div>

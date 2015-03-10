@@ -3,22 +3,30 @@ angular.module('app.controllers', [])
 	$scope.test = 'You\'re Home';
     $scope.textShow = false;
     $scope.saveButton = false;
-    $scope.divContent = [];
+    $scope.divContent = [ { id:'',content: "Original data " } ];
+    console.log($scope.divContent[0].content);
     
     $scope.render = function(){
-        $http.get('http://tiny-pizza-server.herokuapp.com/collections/FinalProject')
+        $http.get('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3')
         .success(function(response) {
 //            $scope.content = '';
             console.log("Response: ");
-            console.log(response);
-            for(var i=0; i < response.length; i++)
-            {
-                console.log("response data: ");
-                if(response[i]){
-                    $scope.divContent.push(response[i].content);  
-                    console.log(response[i]);
-                }
+            console.log(response[0].content);
+//            for(var i=0; i < response.length; i++)
+//            {
+//                console.log("response data: ");
+            // if we have changed and added content...
+            if(response[0].content){
+                console.log("Inside. divContent is: ");
+                console.log($scope.divContent[0].content);
             }
+            // For initial state when response is empty array
+            else{
+                $scope.divContent[0].content += " " + response[0].content; 
+//                $scope.divContent[0].content += " "; 
+            }
+            
+//            } // end of commented section
         })
         .error(function(err){
             console.log(err);
@@ -31,15 +39,18 @@ angular.module('app.controllers', [])
         // show textarea, setting to true also hides div
         $scope.textShow = true;
         $scope.saveButton = true;
+        console.log($scope.divContent[0].content)
+//        $( "<textarea>" ).appendTo
         // take input from text area
         // display input to div once 'saved' button clicked
     };
     
-    $scope.hideEdit = function(content){
+    $scope.hideEdit = function(){
         $scope.textShow = false;
         $scope.saveButton = false;
-        $http.post('http://tiny-pizza-server.herokuapp.com/collections/FinalProject', 
-                   { content: content }); 
+//        content.content.append($scope.divContent[0]);
+        $http.post('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3', 
+                   { content: $scope.divContent[0].content }); 
         $scope.render();
     };
     
