@@ -3,34 +3,39 @@ angular.module('app.controllers', [])
 	$scope.test = 'You\'re Home';
     $scope.textShow = false;
     $scope.saveButton = false;
-    $scope.divContent = [ { id:'',content: "Original data " } ];
-    console.log($scope.divContent[0].content);
+//    $scope.divContent = [ { id:'',content: "Original data" } ];
+//    console.log("Original: " + $scope.divContent[0].content);
     
     $scope.render = function(){
-        $http.get('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3')
-        .success(function(response) {
-//            $scope.content = '';
-            console.log("Response: ");
-            console.log(response[0].content);
-//            for(var i=0; i < response.length; i++)
-//            {
-//                console.log("response data: ");
-            // if we have changed and added content...
-            if(response[0].content){
-                console.log("Inside. divContent is: ");
-                console.log($scope.divContent[0].content);
-            }
-            // For initial state when response is empty array
-            else{
-                $scope.divContent[0].content += " " + response[0].content; 
-//                $scope.divContent[0].content += " "; 
-            }
-            
-//            } // end of commented section
-        })
-        .error(function(err){
-            console.log(err);
-        });
+        $scope.divContent = [ { id:'',content: "Original data" } ];
+
+        console.log("Top of render(): " + $scope.divContent[0].content)
+        // if we have changed and added content...
+        if($scope.divContent[0].content !== "Original data")
+        {
+            $http.get('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3')
+            .success(function(response) {
+                console.log("In Success Render().");
+                console.log("Response[0].content: ");
+                console.log(response[0].content);
+                console.log("Response[0] ");
+                console.log(response[0]);
+                
+                // if we have changed and added content...
+                if(response[0].content){
+                    console.log("Inside Success. divContent is: ");
+                    console.log($scope.divContent[0].content);
+                }
+                // else content is empty string...
+                else{
+                    $scope.divContent[0].content += " " + response[0].content; 
+                }
+            })
+            .error(function(err){
+                console.log(err);
+            });
+        }
+
     };
     
     $scope.render();
@@ -45,10 +50,11 @@ angular.module('app.controllers', [])
         // display input to div once 'saved' button clicked
     };
     
-    $scope.hideEdit = function(){
+    $scope.save = function(){
         $scope.textShow = false;
         $scope.saveButton = false;
-//        content.content.append($scope.divContent[0]);
+        console.log("Changes to be posted in save()");
+        console.log($scope.divContent[0].content)
         $http.post('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3', 
                    { content: $scope.divContent[0].content }); 
         $scope.render();
