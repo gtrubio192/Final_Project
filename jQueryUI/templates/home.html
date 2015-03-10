@@ -9,12 +9,13 @@
             <i class="fa fa-pencil"></i>
         </button>
         <div >
-            <textarea width='100px' height='100px' ng-show="textShow" type="text" ng-model="divContent[0].content" ng-repeat="item in divContent track by $index">
-                {{item.content}}
+            <textarea width='100px' height='100px' ng-show="textShow" type="text" ng-model="divContent[0].content">
+<!--                {{item.content}}-->
     <!--                    {{divContent}}-->
             </textarea>
         </div>
-        <div ng-show="!textShow" ng-bind="divContent[0].content">
+        <div ng-show="!textShow">
+            {{divContent[0].content}}
 <!--       <div ng-show="!textShow" ng-repeat="items in divContent track by $index">-->
 <!--            {{items.content}}-->
 <!--            {{divContent}}-->

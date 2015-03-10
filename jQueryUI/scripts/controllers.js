@@ -1,39 +1,43 @@
 angular.module('app.controllers', [])
-.controller('HomeCtrl', function($scope, $http) {
+.controller('HomeCtrl', function($scope, $http, $interval,$timeout) {
 	$scope.test = 'You\'re Home';
     $scope.textShow = false;
     $scope.saveButton = false;
-//    $scope.divContent = [ { id:'',content: "Original data" } ];
+    $scope.divContent = [ { id:'',content: "" } ];
 //    console.log("Original: " + $scope.divContent[0].content);
     
     $scope.render = function(){
-        $scope.divContent = [ { id:'',content: "Original data" } ];
+//        $scope.divContent = [ { id:'',content: "" } ];
 
         console.log("Top of render(): " + $scope.divContent[0].content)
         // if we have changed and added content...
-        if($scope.divContent[0].content !== "Original data")
+        if($scope.divContent[0].content == "" || $scope.divContent[0].content)
         {
             $http.get('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3')
             .success(function(response) {
                 console.log("In Success Render().");
                 console.log("Response[0].content: ");
                 console.log(response[0].content);
-                console.log("Response[0] ");
-                console.log(response[0]);
+                console.log("divContent: " + $scope.divContent[0].content);
                 
                 // if we have changed and added content...
-                if(response[0].content){
-                    console.log("Inside Success. divContent is: ");
+                if(response[0].content == $scope.divContent[0].content){
+                    console.log("Inside Success if, do nothing. divContent is: ");
                     console.log($scope.divContent[0].content);
                 }
-                // else content is empty string...
+                // else content is empty string... 
                 else{
-                    $scope.divContent[0].content += " " + response[0].content; 
+                    $scope.divContent[0].content = response[0].content; 
+                    console.log("Newest divContent: " + $scope.divContent[0].content);
                 }
             })
             .error(function(err){
                 console.log(err);
             });
+        }
+        // first time adding things
+        else{
+            
         }
 
     };
@@ -44,7 +48,7 @@ angular.module('app.controllers', [])
         // show textarea, setting to true also hides div
         $scope.textShow = true;
         $scope.saveButton = true;
-        console.log($scope.divContent[0].content)
+        console.log("In edit(): " + $scope.divContent[0].content)
 //        $( "<textarea>" ).appendTo
         // take input from text area
         // display input to div once 'saved' button clicked
@@ -57,7 +61,7 @@ angular.module('app.controllers', [])
         console.log($scope.divContent[0].content)
         $http.post('http://tiny-pizza-server.herokuapp.com/collections/FinalProject3', 
                    { content: $scope.divContent[0].content }); 
-        $scope.render();
+        $timeout($scope.render, 2000);
     };
     
     $scope.goPlay = function() {
