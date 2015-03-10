@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>assignment</title>
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <!-- build:css styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+
+
+    <!-- build:css styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+      <link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+    <!-- endbuild -->
+
+  </head>
+  <body ng-app="app">
+    <div class="hero-unit">
+        <nav class="navbar navbar-inverse navbar-center">
+            <!-- ui-sref == special ui router directive   -->
+            <div class="text-center">
+                <a class="navbar-brand navbar-center" href="#" ui-sref="home">Home</a>
+                <a class="navbar-brand navbar-center" href="#" ui-sref="game">Game</a>
+                <a class="navbar-brand navbar-center" href="#" ui-sref="settings">
+                    Settings
+                </a>
+                <a class="navbar-brand navbar-center"href="#" ui-sref="leader">
+                    Leader Board
+                </a>
+            </div>
+        </nav>
+
+        <div ui-view>
+            <!-- throws all routers/templates inside ui-view -->
+            <!--   Home/Bio/Resume         -->
+        </div>
+    </div>
+
+
+    <!-- build:js scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/lodash/lodash.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js scripts/main.js -->
+<!--    <script src="scripts/main.js"></script>-->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers.js"></script>
+        <!-- endbuild -->
+</body>
+</html>

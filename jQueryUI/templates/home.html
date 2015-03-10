@@ -1,0 +1,21 @@
+<div class="container text-center">
+	<p>{{ test }}</p>
+	<button  class="btn" ui-sref="game">Play</button>
+    <button  class="btn" ui-sref="leader">Leader Board</button>
+	<button  class="btn" ui-sref="settings">Settings</button>
+    <br>
+    <div id="edit">
+        <button class="btn pull-right" ng-click="edit()">
+            <i class="fa fa-pencil"></i>
+        </button>
+        <textarea ng-show="textShow" type="text" ng-model="divContent" id="content">
+            
+<!--                    {{divContent}}-->
+        </textarea>
+        <div ng-show="!textShow" ng-repeat="items in divContent track by $index">
+            {{items}}
+<!--            {{divContent}}-->
+        </div>
+        <button ng-show="saveButton" ng-click="hideEdit(divContent)">Save</button>
+    </div>
+</div>
